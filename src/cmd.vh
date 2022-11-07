@@ -22,3 +22,7 @@
 `define BEQ_OP 	 	6'b000100
 `define ADDI_OP 	6'b001000
 `define J_OP 	 	6'b000010
+
+
+// co-processor0 define
+

@@ -1,3 +1,4 @@
+`include "pipeline_cpu.vh" 
 
 module cpu_top (
     input logic CLK,
@@ -161,7 +162,7 @@ hazard_unit i_hz_unit
 );
 
 
-instruction_mem #(.INSTR_MEM_SIZE(32)) i_instr_mem
+instruction_mem #(.INSTR_MEM_SIZE(`INSTR_SIZE)) i_instr_mem
 (
 	.addr(im_addr),
 	.rd(mips_instr_F)
@@ -181,7 +182,7 @@ register_file i_reg_file
 	.rd2(rd2_data)
 );
 
-data_mem #(.DATA_MEM_SIZE(32)) i_data_mem
+data_mem #(.DATA_MEM_SIZE(`RAM_SIZE)) i_data_mem
 (
 	.clk(CLK),
 	.rstn(RSTn),
@@ -204,6 +205,8 @@ control_unit i_control_unit
 	.reg_write(reg_write_D)
 );
 assign PC_src_D = branch_D & (rd1_D == rd2_D);
+
+//cp0 i_cp0 {};
 
 
 alu i_alu
